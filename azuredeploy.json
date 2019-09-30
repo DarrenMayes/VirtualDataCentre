@@ -163,7 +163,7 @@
     {
       "name": "[parameters('nsgMGMTSS')]",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2019-08-01",
+      "apiVersion": "2019-02-01",
       "location": "[parameters('resourceEULocation')]",
       "properties": {
         "securityRules": [
@@ -309,7 +309,7 @@
     {
       "name": "[parameters('nsgSPWEB')]",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2019-08-01",
+      "apiVersion": "2019-02-01",
       "location": "[parameters('resourceEULocation')]",
       "properties": {
         "securityRules": [
@@ -455,7 +455,7 @@
     {
       "name": "[parameters('nsgSPAPP')]",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2019-08-01",
+      "apiVersion": "2019-02-01",
       "location": "[parameters('resourceEULocation')]",
       "properties": {
         "securityRules": [
@@ -601,7 +601,7 @@
     {
       "name": "[parameters('nsgSPDB')]",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2019-08-01",
+      "apiVersion": "2019-02-01",
       "location": "[parameters('resourceEULocation')]",
       "properties": {
         "securityRules": [
@@ -747,7 +747,7 @@
     {
       "name": "[parameters('nsgSPID')]",
       "type": "Microsoft.Network/networkSecurityGroups",
-      "apiVersion": "2019-08-01",
+      "apiVersion": "2019-02-01",
       "location": "[parameters('resourceEULocation')]",
       "properties": {
         "securityRules": [
@@ -1059,9 +1059,6 @@
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPDB'))]",
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPID'))]"
       ],
-      "tags": {
-        "displayName": "[parameters('azvirtualNetwork2')]"
-      },
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
