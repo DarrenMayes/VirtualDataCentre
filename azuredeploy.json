@@ -759,7 +759,7 @@
               "sourcePortRange": "*",
               "destinationPortRange": "389",
               "sourceAddressPrefix": "10.102.0.0/16",
-              "destinationAddressPrefix": "10.102.7.0/27",
+              "destinationAddressPrefix": "10.102.8.0/23",
               "access": "Allow",
               "priority": 100,
               "direction": "Inbound",
