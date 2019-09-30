@@ -1,4 +1,4 @@
-# HybridNetworkArchitecture
+# Hybrid Network Architecture
 Azure Resource Manager template for deploying two virtual networks within an EU Region which incorporates Azure Firewall in a Hybrid Network Architecture.
  
 The template can be used to deploy a LAB-like environment for learning, testing and evaluation purposes. The template, uses a multi-tiered network zone architecture to ISOLATE and SEGMENT services across functional boundaries, each of which are protected by a Network Security Group firewall at the Subnet Level. Once deployed, the architecture allows for testing HA and Disaster Recovery scenarios for Web Servers, Identity Services and Databases across regions.
