@@ -4,7 +4,7 @@
   "parameters": {
     "saType": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "Standard_LRS",
       "allowedValues": [
         "Standard_LRS",
         "Standard_GRS",
@@ -17,7 +17,7 @@
     },
     "azvirtualNetwork1": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "VNET-TP-EU-SS",
       "metadata": {
         "description": "Name of the SHARED SERVICES [HUB] Virtual network."
       }
@@ -25,7 +25,7 @@
     },
     "azvirtualNetwork2": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "VNET-TP-EU-PRD",
       "metadata": {
         "description": "Name of the PRODUCTION [SPOKE] Virtual network."
       }
@@ -33,7 +33,7 @@
     },
     "resourceEULocation": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "UK SOUTH",
       "metadata": {
         "description": "Location where NETWORK RESOURCES will be deployed."
       }
@@ -41,7 +41,7 @@
     },
     "azfirewallName": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "AZFW-TP-EU-SS",
       "metadata": {
         "description": "Name of the SHARED SERVICES Azure Firewall."
       }
@@ -49,14 +49,14 @@
     },
     "azureFirewallSubnetAddressPrefix": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "172.16.254.0/27",
       "metadata": {
         "description": "AzureFirewallSubnet prefix"
       }
     },
     "numberOfPublicIPAddresses": {
       "type": "int",
-      "defaultValue": "",
+      "defaultValue": "1",
       "metadata": {
         "description": "Number of public IP addresses."
       }
@@ -64,7 +64,7 @@
     },
     "publicIPNamePrefix": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "publicIP",
       "metadata": {
         "description": "Public IP address name prefix - will be auto suffixed with a number (e.g. publicIP1)."
       }
@@ -80,7 +80,7 @@
     },
     "nsgMGMTSS": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "NSG-MGMT-EU-SS",
       "metadata": {
         "description": "Name of the SHARED SERVICES subnet NSG."
       }
@@ -88,7 +88,7 @@
     },
     "nsgSPWEB": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "NSG-WEB-EU-PRD",
       "metadata": {
         "description": "Name of the PRODUCTION web subnet NSG."
       }
@@ -96,7 +96,7 @@
     },
     "nsgSPAPP": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "NSG-APP-EU-PRD",
       "metadata": {
         "description": "Name of the PRODUCTION APP subnet NSG."
       }
@@ -104,7 +104,7 @@
     },
     "nsgSPDB": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "NSG-DB-EU-PRD",
       "metadata": {
         "description": "Name of the PRODUCTION DB subnet NSG."
       }
@@ -112,7 +112,7 @@
     },
     "nsgSPID": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "NSG-ID-EU-PRD",
       "metadata": {
         "description": "Name of the PRODUCTION ID subnet NSG."
       }
