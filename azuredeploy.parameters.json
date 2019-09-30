@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "saType": {
+      "value": "Standard_LRS"
+    },
+    "azvirtualNetwork1": {
+      "value": "VNET-TP-EU-SS"
+    },
+    "azvirtualNetwork2": {
+      "value": "VNET-TP-EU-PRD"
+    },
+    "resourceEULocation": {
+      "value": "UK SOUTH"
+    },
+    "azfirewallName": {
+      "value": "AZFW-TP-EU-SS"
+    },
+    "azureFirewallSubnetAddressPrefix": {
+      "value": "172.16.254.0/27"
+    },
+    "numberOfPublicIPAddresses": {
+      "value": "1"
+    },
+    "publicIPNamePrefix": {
+      "value": "publicIP"
+    },
+    "availabilityZones": {
+      "value": [ "1", "2", "3" ]
+    },
+    "nsgMGMTSS": {
+      "value": "NSG-MGMT-EU-SS"
+    },
+    "nsgSPWEB": {
+      "value": "NSG-WEB-EU-PRD"
+    },
+    "nsgSPAPP": {
+      "value": "NSG-APP-EU-PRD"
+    },
+    "nsgSPDB": {
+      "value": "NSG-DB-EU-PRD"
+    },
+    "nsgSPID": {
+      "value": "NSG-ID-EU-PRD"
+    }
+  }
+}
