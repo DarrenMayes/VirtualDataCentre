@@ -24,7 +24,7 @@
       "value": "1"
     },
     "publicIPNamePrefix": {
-      "value": "publicIP"
+      "value": "PIP-TP-EU-AZFW"
     },
     "availabilityZones": {
       "value": [ "1", "2", "3" ]

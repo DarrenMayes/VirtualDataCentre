@@ -64,7 +64,7 @@
     },
     "publicIPNamePrefix": {
       "type": "string",
-      "defaultValue": "publicIP",
+      "defaultValue": "PIP-TP-EU-AZFW",
       "metadata": {
         "description": "Public IP address name prefix - will be auto suffixed with a number (e.g. publicIP1)."
       }
@@ -1032,7 +1032,7 @@
           {
             "name": "netRc1",
             "properties": {
-              "priority": 200,
+              "priority": 100,
               "action": { "type": "Allow" },
               "rules": [
                 {
