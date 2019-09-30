@@ -33,7 +33,7 @@
     },
     "resourceEULocation": {
       "type": "string",
-      "defaultValue": "UK SOUTH",
+      "defaultValue": "West Europe",
       "metadata": {
         "description": "Location where NETWORK RESOURCES will be deployed."
       }
@@ -893,7 +893,7 @@
     {
       "name": "[parameters('azvirtualNetwork1')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2019-04-01",
+      "apiVersion": "2019-08-01",
       "location": "[parameters('resourceEULocation')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgMGMTSS'))]",
@@ -995,7 +995,7 @@
       }
     },
     {
-      "apiVersion": "2019-04-01",
+      "apiVersion": "2019-08-01",
       "type": "Microsoft.Network/azureFirewalls",
       "name": "[parameters('azfirewallName')]",
       "location": "[parameters('resourceEULocation')]",
@@ -1051,7 +1051,7 @@
     {
       "name": "[parameters('azvirtualNetwork2')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2019-04-01",
+      "apiVersion": "2019-08-01",
       "location": "[parameters('resourceEULocation')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPWEB'))]",
