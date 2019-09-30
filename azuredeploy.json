@@ -49,7 +49,7 @@
     },
     "azureFirewallSubnetAddressPrefix": {
       "type": "string",
-      "defaultValue": "172.16.254.0/27",
+      "defaultValue": "172.16.254.0/26",
       "metadata": {
         "description": "AzureFirewallSubnet prefix"
       }

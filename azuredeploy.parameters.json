@@ -18,7 +18,7 @@
       "value": "AZFW-TP-EU-SS"
     },
     "azureFirewallSubnetAddressPrefix": {
-      "value": "172.16.254.0/27"
+      "value": "172.16.254.0/26"
     },
     "numberOfPublicIPAddresses": {
       "value": "1"
