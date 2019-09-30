@@ -1059,6 +1059,9 @@
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPDB'))]",
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPID'))]"
       ],
+      "tags": {
+        "displayName": "[parameters('azvirtualNetwork2')]"
+      },
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
