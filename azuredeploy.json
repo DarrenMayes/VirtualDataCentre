@@ -893,7 +893,7 @@
     {
       "name": "[parameters('azvirtualNetwork1')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2019-08-01",
+      "apiVersion": "2019-06-01",
       "location": "[parameters('resourceEULocation')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgMGMTSS'))]",
@@ -1051,7 +1051,7 @@
     {
       "name": "[parameters('azvirtualNetwork2')]",
       "type": "Microsoft.Network/virtualNetworks",
-      "apiVersion": "2019-08-01",
+      "apiVersion": "2019-06-01",
       "location": "[parameters('resourceEULocation')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPWEB'))]",
