@@ -120,7 +120,7 @@
     }
   },
   "variables": {
-    "saName": "[concat('store', uniquestring(resourceGroup().id))]",
+    "saName": "SA-TP-EU-SECUREDIAG",
     "VNETSSPrefix": "172.16.0.0/16",
     "GWSubnetName": "GatewaySubnet",
     "GWSubnetPrefix": "172.16.255.224/27",
