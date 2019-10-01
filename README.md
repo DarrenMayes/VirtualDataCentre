@@ -9,3 +9,7 @@ The template is customisable and can be used to build and generate similar netwo
   <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
+
