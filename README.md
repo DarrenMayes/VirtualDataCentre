@@ -43,6 +43,7 @@ The template is customisable and can be used to build and generate similar netwo
 - [x] Create and associate Network Security Group to filter traffic at subnet level of Spoke Virtual Network
 - [ ] Include Service Endpoints for Microsoft.Storage to integrate sensitive accounts with VNET
 - [ ] Create Storage Account and integrate Diagnostic Logs for Azure Firewall for forensics and analysis
+- [ ] Modify the template to include Virtual Network Gateway in readiness for S2S VPN
 - [ ] Incorporate an Application Gateway with Web Application Firewall Functionality closest to Web Subnet
 - [ ] Create Test VM to validate approved traffic flows from Shared Services HUB to Production Spoke
 
