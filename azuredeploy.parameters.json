@@ -5,6 +5,18 @@
     "saType": {
       "value": "Standard_LRS"
     },
+    "aZFWRouteTables": {
+      "value": "RT-TP-EU-AZFW"
+    },
+    "azUDRINT": {
+      "value": "UDR-TP-EU-INT"
+    },
+    "azUDRSS": {
+      "value": "UDR-TP-EU-SS"
+    },
+    "azUDRSPOKE": {
+      "value": "UDR-TP-EU-SPOKE"
+    },
     "azvirtualNetwork1": {
       "value": "VNET-TP-EU-SS"
     },
@@ -21,7 +33,7 @@
       "value": "172.16.254.0/26"
     },
     "numberOfPublicIPAddresses": {
-      "value": "1"
+      "value": 1
     },
     "publicIPNamePrefix": {
       "value": "PIP-TP-EU-AZFW"
