@@ -253,7 +253,7 @@
 
     },
     "backendIPAddresses": {
-      "type": "array",
+      "type": "string",
       "defaultValue": [
         {
           "IpAddress": "10.102.2.4"
