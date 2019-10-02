@@ -45,7 +45,7 @@ The template is customisable and can be used to build and generate similar netwo
 |'wafMode'                              |Detection                |Default operational mode of the WAF                              |                              
 |'wafRuleSetType'                       |OWASP                    |Default state of the WAF                                         | 
 |'wafRuleSetVersion'                    |3.0                      |WAF Ruleset Engine and Signatures                                | 
-|'backendIPAddresses'                   |10.102.2.4, 10.102.2.5   |Backend IP Address Pool                                          |       
+|'backendIPAddresses'                   |10.102.2.4               |Backend IP Address Pool                                          |       
 |'cookieBasedAffinity'                  |Disabled                 |Default state of the WAF                                         |
 
 
