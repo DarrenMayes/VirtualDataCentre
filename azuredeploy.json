@@ -257,9 +257,6 @@
       "defaultValue": [
         {
           "IpAddress": "10.102.2.4"
-        },
-        {
-          "IpAddress": "10.102.2.5"
         }
       ],
       "metadata": {
