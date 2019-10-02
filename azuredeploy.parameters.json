@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "saName": {
-      "value": "satpeuazfw"
+      "value": "satpeuazfwe"
     },
     "saType": {
       "value": "Standard_LRS"
@@ -81,7 +81,7 @@
       "value": 80
     },
     "wafEnabled": {
-      "value": "true"
+      "value": true
     },
     "wafMode": {
       "value": "Detection"
@@ -96,6 +96,9 @@
       "value": [
         {
           "IpAddress": "10.102.2.4"
+        },
+        {
+          "IpAddress": "10.102.2.5"
         }
       ]
     },

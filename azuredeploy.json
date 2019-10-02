@@ -4,7 +4,7 @@
   "parameters": {
     "saName": {
       "type": "string",
-      "defaultValue": "satpeuazfw",
+      "defaultValue": "satpeuazfe",
       "metadata": {
         "description": "Name of the STORAGE ACCOUNT used for Diagnostics."
       }
@@ -253,8 +253,15 @@
 
     },
     "backendIPAddresses": {
-      "type": "string",
-      "defaultValue": "10.102.2.4",
+      "type": "array",
+      "defaultValue": [
+        {
+          "IpAddress": "10.102.2.4"
+        },
+        {
+          "IpAddress": "10.102.2.5"
+        }
+      ],
       "metadata": {
         "description": "back end pool ip addresses"
       }
