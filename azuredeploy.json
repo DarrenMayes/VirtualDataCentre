@@ -254,11 +254,7 @@
     },
     "backendIPAddresses": {
       "type": "string",
-      "defaultValue": [
-        {
-          "IpAddress": "10.102.2.4"
-        }
-      ],
+      "defaultValue": "10.102.2.4",
       "metadata": {
         "description": "back end pool ip addresses"
       }
