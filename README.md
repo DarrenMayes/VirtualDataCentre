@@ -14,39 +14,39 @@ The template is customisable and can be used to build and generate similar netwo
 
 ***Paramaters***
 
-|Name                                   |Value                    |Description                                                      |
-|:---                                   |:---                     |:---                                                             |
-|'saName'                               |Standard_LRS             |Name of the Storage Account used for Diagnostic Archive          |
-|'saType'                               |Standard_LRS             |Used to define the Storage Account Type                          |
-|'sharedServicesHUB'                    |VNET-TP-EU-SS            |SHARED SERVICES *HUB* VIRTUAL NETWORK                            |
-|'testSPOKE        '                    |VNET-TP-EU-TST           |PRODUCTION *SPOKE* VIRTUAL NETWORK                               |
-|'azfirewallName'                       |AZFW-TP-EU-SS            |Name of the Azure Firewall deployed within SHARED SERVICES *HUB* |
-|'azfwSubnetAddressPrefix'              |172.16.254.0/26          |Private Subnet Used by the Azure Firewall                        |
-|'noPublicIPAddresses'                  |1                        |Count of Public IP Addressess used by Azure Firewall             |
-|'publicIPNamePrefix'                   |PIP-TP-EU-AZFW           |Name of the Public IP Addressess used by Azure Firewall          |  
-|'availabilityZones'                    |"1", "2", "3"            |Used to mitigate risk of Azure Datacenter Failure                |
-|'aZFWRouteTables'                      |RT-TP-EU-AZFW            |Route Table for Internet  via Azure Firewall                     |
-|'azUDRINT'                             |UDR-TP-EU-INT            |Internet 0.0.0.0/0 Route via Azure Firewall                      |
-|'azUDRSS'                              |UDR-TP-EU-SS             |HUB 172.16.0.0/16 Route via Azure Firewall                       |                                     
-|'azUDRSPOKE'                           |UDR-TP-EU-SPOKE          |SPOKE 10.102.0.0/16 Route via Azure Firewall                     |                                                                               
-|'nsgMGMTSS'                            |NSG-MGMT-EU-SS           |Name of Shared Services Management Subnet NSG                    |                                      
-|'nsgSPWEB'                             |NSG-WEB-EU-TST           |Name of TEST Web Subnet NSG                                      | 
-|'nsgSPAPP'                             |NSG-APP-EU-TST           |Name of TEST App Subnet NSG                                      |                               
-|'nsgSPDB'                              |NSG-DB-EU-TST            |Name of TEST DB Subnet NSG                                       |                                
-|'nsgSPID'                              |NSG-ID-EU-TST            |Name of TEST ID Subnet NSG                                       |                               
-|'applicationGatewayName'               |AGW-TP-EU-TS             |Name of TEST Application Gateway with WAF                        |
-|'applicationGatewaySize'               |WAF_Medium               |Size of TEST Application Gateway with WAF                        |
-|'applicationGatewayTier'               |WAF                      |Tier of the Application Gateway                                  |
-|'applicationGatewayInstanceCount'      |1                        |Instance volume of the Application Gateway                       |
-|'frontendIPAddresses'                  |10.102.1.4               |Private IP of the Application Gateway                            |
-|'frontendPort'                         |80                       |Frontend Port                                                    |
-|'backendPort'                          |80                       |Backend Port                                                     |
-|'wafEnabled'                           |True                     |The desired state of WAF functionality                           |
-|'wafMode'                              |Detection                |Default operational mode of the WAF                              |                              
-|'wafRuleSetType'                       |OWASP                    |Default state of the WAF                                         | 
-|'wafRuleSetVersion'                    |3.0                      |WAF Ruleset Engine and Signatures                                | 
-|'backendIPAddresses'                   |10.102.2.4               |Backend IP Address Pool                                          |       
-|'cookieBasedAffinity'                  |Disabled                 |Default state of the WAF                                         |
+|Name                               |Value                    |Description                                                      |
+|:---                               |:---                     |:---                                                             |
+|'saName'                           |Standard_LRS             |Name of the Storage Account used for Diagnostic Archive          |
+|'saType'                           |Standard_LRS             |Used to define the Storage Account Type                          |
+|'sharedServicesHUB'                |VNET-TP-EU-SS            |SHARED SERVICES *HUB* VIRTUAL NETWORK                            |
+|'testSPOKE        '                |VNET-TP-EU-TST           |PRODUCTION *SPOKE* VIRTUAL NETWORK                               |
+|'azfirewallName'                   |AZFW-TP-EU-SS            |Name of the Azure Firewall deployed within SHARED SERVICES *HUB* |
+|'azfwSubnetAddressPrefix'          |172.16.254.0/26          |Private Subnet Used by the Azure Firewall                        |
+|'noPublicIPAddresses'              |1                        |Count of Public IP Addressess used by Azure Firewall             |
+|'publicIPNamePrefix'               |PIP-TP-EU-AZFW           |Name of the Public IP Addressess used by Azure Firewall          |  
+|'availabilityZones'                |"1", "2", "3"            |Used to mitigate risk of Azure Datacenter Failure                |
+|'aZFWRouteTables'                  |RT-TP-EU-AZFW            |Route Table for Internet  via Azure Firewall                     |
+|'azUDRINT'                         |UDR-TP-EU-INT            |Internet 0.0.0.0/0 Route via Azure Firewall                      |
+|'azUDRSS'                          |UDR-TP-EU-SS             |HUB 172.16.0.0/16 Route via Azure Firewall                       |                                     
+|'azUDRSPOKE'                       |UDR-TP-EU-SPOKE          |SPOKE 10.102.0.0/16 Route via Azure Firewall                     |                                                                               
+|'nsgMGMTSS'                        |NSG-MGMT-EU-SS           |Name of Shared Services Management Subnet NSG                    |                                      
+|'nsgSPWEB'                         |NSG-WEB-EU-TST           |Name of TEST Web Subnet NSG                                      | 
+|'nsgSPAPP'                         |NSG-APP-EU-TST           |Name of TEST App Subnet NSG                                      |                               
+|'nsgSPDB'                          |NSG-DB-EU-TST            |Name of TEST DB Subnet NSG                                       |                                
+|'nsgSPID'                          |NSG-ID-EU-TST            |Name of TEST ID Subnet NSG                                       |                               
+|'applicationGatewayName'           |AGW-TP-EU-TS             |Name of TEST Application Gateway with WAF                        |
+|'applicationGatewaySize'           |WAF_Medium               |Size of TEST Application Gateway with WAF                        |
+|'applicationGatewayTier'           |WAF                      |Tier of the Application Gateway                                  |
+|'applicationGatewayInstanceCount'  |1                        |Instance volume of the Application Gateway                       |
+|'frontendIPAddresses'              |10.102.1.4               |Private IP of the Application Gateway                            |
+|'frontendPort'                     |80                       |Frontend Port                                                    |
+|'backendPort'                      |80                       |Backend Port                                                     |
+|'wafEnabled'                       |True                     |The desired state of WAF functionality                           |
+|'wafMode'                          |Detection                |Default operational mode of the WAF                              |                              
+|'wafRuleSetType'                   |OWASP                    |Default state of the WAF                                         | 
+|'wafRuleSetVersion'                |3.0                      |WAF Ruleset Engine and Signatures                                | 
+|'backendIPAddresses'               |10.102.2.4, 10.102.2.5   |Backend IP Address Pool                                          |       
+|'cookieBasedAffinity'              |Disabled                 |Default state of the WAF                                         |
 
 
 
