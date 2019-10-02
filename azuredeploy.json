@@ -2,6 +2,14 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "saName": {
+      "type": "string",
+      "defaultValue": "satpeuazfw",
+      "metadata": {
+        "description": "Name of the STORAGE ACCOUNT used for Diagnostics."
+      }
+
+    },
     "saType": {
       "type": "string",
       "defaultValue": "Standard_LRS",
@@ -15,7 +23,7 @@
         "description": "Storage Account for Diagnostics"
       }
     },
-    "azvirtualNetwork1": {
+    "sharedServicesHUB": {
       "type": "string",
       "defaultValue": "VNET-TP-EU-SS",
       "metadata": {
@@ -23,19 +31,19 @@
       }
 
     },
-    "azvirtualNetwork2": {
+    "testSPOKE": {
       "type": "string",
-      "defaultValue": "VNET-TP-EU-PRD",
+      "defaultValue": "VNET-TP-EU-TST",
       "metadata": {
-        "description": "Name of the PRODUCTION [SPOKE] Virtual network."
+        "description": "Name of the TEST SPOKE Virtual network."
       }
 
     },
-    "resourceEULocation": {
+    "resourceLocation": {
       "type": "string",
-      "defaultValue": "West Europe",
+      "defaultValue": "[resourceGroup().location]",
       "metadata": {
-        "description": "Location where NETWORK RESOURCES will be deployed."
+        "description": "Location where Resources will be deployed."
       }
 
     },
@@ -47,14 +55,14 @@
       }
 
     },
-    "azureFirewallSubnetAddressPrefix": {
+    "azfwSubnetAddressPrefix": {
       "type": "string",
       "defaultValue": "172.16.254.0/26",
       "metadata": {
         "description": "AzureFirewallSubnet prefix"
       }
     },
-    "numberOfPublicIPAddresses": {
+    "noPublicIPAddresses": {
       "type": "int",
       "defaultValue": 1,
       "metadata": {
@@ -78,7 +86,7 @@
       }
 
     },
-    "aZFWRouteTables": {
+    "azRouteTables": {
       "defaultValue": "RT-TP-EU-AZFW",
       "type": "string"
     },
@@ -104,39 +112,173 @@
     },
     "nsgSPWEB": {
       "type": "string",
-      "defaultValue": "NSG-WEB-EU-PRD",
+      "defaultValue": "NSG-WEB-EU-TST",
       "metadata": {
-        "description": "Name of the PRODUCTION web subnet NSG."
+        "description": "Name of the TEST SPOKE web subnet NSG."
       }
 
     },
     "nsgSPAPP": {
       "type": "string",
-      "defaultValue": "NSG-APP-EU-PRD",
+      "defaultValue": "NSG-APP-EU-TST",
       "metadata": {
-        "description": "Name of the PRODUCTION APP subnet NSG."
+        "description": "Name of the TEST SPOKE APP subnet NSG."
       }
 
     },
     "nsgSPDB": {
       "type": "string",
-      "defaultValue": "NSG-DB-EU-PRD",
+      "defaultValue": "NSG-DB-EU-TST",
       "metadata": {
-        "description": "Name of the PRODUCTION DB subnet NSG."
+        "description": "Name of the TEST SPOKE DB subnet NSG."
       }
 
     },
     "nsgSPID": {
       "type": "string",
-      "defaultValue": "NSG-ID-EU-PRD",
+      "defaultValue": "NSG-ID-EU-TST",
       "metadata": {
-        "description": "Name of the PRODUCTION ID subnet NSG."
+        "description": "Name of the TEST SPOKE ID subnet NSG."
       }
 
+    },
+    "applicationGatewayName": {
+      "type": "string",
+      "defaultValue": "agw-tp-eu-ts",
+      "metadata": {
+        "description": "Name of Spoke Application Gateway"
+      }
+    },
+    "applicationGatewaySize": {
+      "type": "string",
+      "allowedValues": [
+        "WAF_Medium",
+        "WAF_Large"
+      ],
+      "defaultValue": "WAF_Medium",
+      "metadata": {
+        "description": "The size of the Application Gateway"
+      }
+    },
+    "applicationGatewayTier": {
+      "type": "string",
+      "allowedValues": [
+        "WAF",
+        "WAF_v2"
+      ],
+      "defaultValue": "WAF",
+      "metadata": {
+        "description": "The Tier of the Application Gateway"
+      }
+    },
+    "applicationGatewayInstanceCount": {
+      "type": "int",
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "defaultValue": 2,
+      "metadata": {
+        "description": "application gateway instance count"
+      }
+    },
+    "frontendIPAddresses": {
+      "type": "string",
+      "defaultValue": "10.102.1.4",
+      "metadata": {
+        "description": "Static Front End IP Address of AppGW."
+      }
+
+    },
+    "frontendPort": {
+      "type": "int",
+      "defaultValue": 80,
+      "metadata": {
+        "description": "application gateway front end port"
+      }
+    },
+    "backendPort": {
+      "type": "int",
+      "defaultValue": 80,
+      "metadata": {
+        "description": "application gateway back end port"
+      }
+    },
+    "wafEnabled": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "Switch to enable the Application Gateway Web Application Firewall"
+      }
+    },
+    "wafMode": {
+      "type": "string",
+      "allowedValues": [
+        "Detection",
+        "Prevention"
+      ],
+      "defaultValue": "Detection",
+      "metadata": {
+        "description": "Operational Mode of the Application Gateway Web Application Firewall"
+      }
+    },
+    "wafRuleSetType": {
+      "type": "string",
+      "allowedValues": [
+        "OWASP"
+      ],
+      "defaultValue": "OWASP",
+      "metadata": {
+        "description": "Application Gateway WAF Rule Engine"
+      }
+    },
+    "wafRuleSetVersion": {
+      "type": "string",
+      "allowedValues": [
+        "2.2.9",
+        "3.0"
+      ],
+      "defaultValue": "3.0",
+      "metadata": {
+        "description": "Version of the Application Gateway Web Application Firewall Rules."
+      }
+
+    },
+    "backendIPAddresses": {
+      "type": "array",
+      "defaultValue": [
+        {
+          "IpAddress": "10.102.2.4"
+        },
+        {
+          "IpAddress": "10.102.2.5"
+        }
+      ],
+      "metadata": {
+        "description": "back end pool ip addresses"
+      }
+    },
+    "cookieBasedAffinity": {
+      "type": "string",
+      "allowedValues": [
+        "Enabled",
+        "Disabled"
+      ],
+      "defaultValue": "Disabled",
+      "metadata": {
+        "description": "cookie based affinity"
+      }
     }
   },
   "variables": {
-    "saName": "satpeuazfw",
     "VNETSSPrefix": "172.16.0.0/16",
     "GWSubnetName": "GatewaySubnet",
     "GWSubnetPrefix": "172.16.255.224/27",
@@ -145,24 +287,24 @@
     "SSSubnetName": "SharedServicesSubnet",
     "SSSubnetPrefix": "172.16.2.0/23",
     "VNETSPPrefix": "10.102.0.0/16",
-    "APPGWSPSubnetName": "APPGWPRD",
+    "APPGWSPSubnetName": "APPGWTST",
     "APPGWSPSubnetPrefix": "10.102.1.0/24",
-    "WEBSPSubnetName": "WEBPRD",
-    "WEBSPubnetPrefix": "10.102.2.0/23",
-    "APPSPSubnetName": "APPPRD",
+    "WEBSPSubnetName": "WEBTST",
+    "WEBSPSubnetPrefix": "10.102.2.0/23",
+    "APPSPSubnetName": "APPTST",
     "APPSPSubnetPrefix": "10.102.4.0/23",
-    "DBSPSubnetName": "DBPRD",
+    "DBSPSubnetName": "DBTST",
     "DBSPSubnetPrefix": "10.102.6.0/23",
-    "IDSPSubnetName": "IDPRD",
+    "IDSPSubnetName": "IDTST",
     "IDSPSubnetPrefix": "10.102.8.0/23",
     "azureFirewallSubnetName": "AzureFirewallSubnet",
-    "azureFirewallSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('azvirtualNetwork1'), variables('azureFirewallSubnetName'))]",
+    "azureFirewallSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('sharedServicesHUB'), variables('azureFirewallSubnetName'))]",
     "azureFirewallPublicIpId": "[resourceId('Microsoft.Network/publicIPAddresses',parameters('publicIPNamePrefix'))]",
     "azureFirewallSubnetJSON": "[json(format('{{\"id\": \"{0}\"}}', variables('azureFirewallSubnetId')))]",
     "copy": [
       {
         "name": "azureFirewallIpConfigurations",
-        "count": "[parameters('numberOfPublicIPAddresses')]",
+        "count": "[parameters('noPublicIPAddresses')]",
         "input": {
           "name": "[concat('IpConf', copyIndex('azureFirewallIpConfigurations'))]",
           "properties": {
@@ -180,7 +322,7 @@
       "name": "[parameters('nsgMGMTSS')]",
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2019-02-01",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "properties": {
         "securityRules": [
           {
@@ -326,7 +468,7 @@
       "name": "[parameters('nsgSPWEB')]",
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2019-02-01",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "properties": {
         "securityRules": [
           {
@@ -472,7 +614,7 @@
       "name": "[parameters('nsgSPAPP')]",
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2019-02-01",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "properties": {
         "securityRules": [
           {
@@ -618,7 +760,7 @@
       "name": "[parameters('nsgSPDB')]",
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2019-02-01",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "properties": {
         "securityRules": [
           {
@@ -764,7 +906,7 @@
       "name": "[parameters('nsgSPID')]",
       "type": "Microsoft.Network/networkSecurityGroups",
       "apiVersion": "2019-02-01",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "properties": {
         "securityRules": [
           {
@@ -907,10 +1049,10 @@
       }
     },
     {
-      "name": "[parameters('azvirtualNetwork1')]",
+      "name": "[parameters('sharedServicesHUB')]",
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2019-08-01",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgMGMTSS'))]",
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPWEB'))]",
@@ -919,7 +1061,7 @@
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPID'))]"
       ],
       "tags": {
-        "displayName": "[parameters('azvirtualNetwork1')]"
+        "displayName": "[parameters('sharedServicesHUB')]"
       },
       "properties": {
         "addressSpace": {
@@ -942,7 +1084,7 @@
             "name": "[variables('azureFirewallSubnetName')]",
             "etag": "",
             "properties": {
-              "addressPrefix": "[parameters('azureFirewallSubnetAddressPrefix')]",
+              "addressPrefix": "[parameters('azfwSubnetAddressPrefix')]",
               "serviceEndpoints": [],
               "delegations": []
             }
@@ -974,11 +1116,11 @@
         {
           "apiVersion": "2019-08-01",
           "type": "virtualNetworkPeerings",
-          "name": "[concat(parameters('azvirtualNetwork1'), '-to-', parameters('azvirtualNetwork2'))]",
-          "location": "[parameters('resourceEULocation')]",
+          "name": "[concat(parameters('sharedServicesHUB'), '-to-', parameters('testSPOKE'))]",
+          "location": "[parameters('resourceLocation')]",
           "dependsOn": [
-            "[concat('Microsoft.Network/virtualNetworks/', parameters('azvirtualNetwork1'))]",
-            "[concat('Microsoft.Network/virtualNetworks/', parameters('azvirtualNetwork2'))]"
+            "[concat('Microsoft.Network/virtualNetworks/', parameters('sharedServicesHUB'))]",
+            "[concat('Microsoft.Network/virtualNetworks/', parameters('testSPOKE'))]"
           ],
           "comments": "This is the peering from vNet 1 to vNet 2",
           "properties": {
@@ -987,7 +1129,7 @@
             "allowGatewayTransit": false,
             "useRemoteGateways": false,
             "remoteVirtualNetwork": {
-              "id": "[resourceId('Microsoft.Network/virtualNetworks',parameters('azvirtualNetwork2'))]"
+              "id": "[resourceId('Microsoft.Network/virtualNetworks',parameters('testSPOKE'))]"
             }
           }
         }
@@ -997,7 +1139,7 @@
       "name": "[concat(parameters('publicIPNamePrefix'), add(copyIndex(), 1))]",
       "type": "Microsoft.Network/publicIPAddresses",
       "apiVersion": "2019-08-01",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "sku": {
         "name": "Standard"
       },
@@ -1007,17 +1149,17 @@
       },
       "copy": {
         "name": "publicIpCopy",
-        "count": "[parameters('numberOfPublicIPAddresses')]"
+        "count": "[parameters('noPublicIPAddresses')]"
       }
     },
     {
       "apiVersion": "2019-04-01",
       "type": "Microsoft.Network/azureFirewalls",
       "name": "[parameters('azfirewallName')]",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "zones": "[if(equals(length(parameters('availabilityZones')), 0), json('null'), parameters('availabilityZones'))]",
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('azvirtualNetwork1'))]",
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('sharedServicesHUB'))]",
         "publicIpCopy"
       ],
       "properties": {
@@ -1065,16 +1207,16 @@
       }
     },
     {
-      "name": "[parameters('azvirtualNetwork2')]",
+      "name": "[parameters('testSPOKE')]",
       "type": "Microsoft.Network/virtualNetworks",
       "apiVersion": "2019-08-01",
-      "location": "[parameters('resourceEULocation')]",
+      "location": "[parameters('resourceLocation')]",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPWEB'))]",
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPAPP'))]",
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPDB'))]",
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters ('nsgSPID'))]",
-        "[resourceId('Microsoft.Network/routeTables', parameters ('aZFWRouteTables'))]"
+        "[resourceId('Microsoft.Network/routeTables', parameters ('azRouteTables'))]"
       ],
       "properties": {
         "addressSpace": {
@@ -1097,9 +1239,9 @@
             "name": "[variables('WEBSPSubnetName')]",
             "etag": "",
             "properties": {
-              "addressPrefix": "[variables('WEBSPubnetPrefix')]",
+              "addressPrefix": "[variables('WEBSPSubnetPrefix')]",
               "routeTable": {
-                "id": "[resourceId('Microsoft.Network/routeTables', parameters('aZFWRouteTables'))]"
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('azRouteTables'))]"
               },
               "networkSecurityGroup": {
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgSPWEB'))]"
@@ -1114,7 +1256,7 @@
             "properties": {
               "addressPrefix": "[variables('APPSPSubnetPrefix')]",
               "routeTable": {
-                "id": "[resourceId('Microsoft.Network/routeTables', parameters('aZFWRouteTables'))]"
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('azRouteTables'))]"
               },
               "networkSecurityGroup": {
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgSPAPP'))]"
@@ -1129,7 +1271,7 @@
             "properties": {
               "addressPrefix": "[variables('DBSPSubnetPrefix')]",
               "routeTable": {
-                "id": "[resourceId('Microsoft.Network/routeTables', parameters('aZFWRouteTables'))]"
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('azRouteTables'))]"
               },
               "networkSecurityGroup": {
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgSPDB'))]"
@@ -1144,7 +1286,7 @@
             "properties": {
               "addressPrefix": "[variables('IDSPSubnetPrefix')]",
               "routeTable": {
-                "id": "[resourceId('Microsoft.Network/routeTables', parameters('aZFWRouteTables'))]"
+                "id": "[resourceId('Microsoft.Network/routeTables', parameters('azRouteTables'))]"
               },
               "networkSecurityGroup": {
                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgSPID'))]"
@@ -1159,11 +1301,11 @@
         {
           "apiVersion": "2019-08-01",
           "type": "virtualNetworkPeerings",
-          "name": "[concat(parameters('azvirtualNetwork2'), '-to-', parameters('azvirtualNetwork1'))]",
-          "location": "[parameters('resourceEULocation')]",
+          "name": "[concat(parameters('testSPOKE'), '-to-', parameters('sharedServicesHUB'))]",
+          "location": "[parameters('resourceLocation')]",
           "dependsOn": [
-            "[concat('Microsoft.Network/virtualNetworks/', parameters('azvirtualNetwork1'))]",
-            "[concat('Microsoft.Network/virtualNetworks/', parameters('azvirtualNetwork2'))]"
+            "[concat('Microsoft.Network/virtualNetworks/', parameters('sharedServicesHUB'))]",
+            "[concat('Microsoft.Network/virtualNetworks/', parameters('testSPOKE'))]"
           ],
           "comments": "This is the peering from vNet 1 to vNet 2",
           "properties": {
@@ -1172,7 +1314,7 @@
             "allowGatewayTransit": false,
             "useRemoteGateways": false,
             "remoteVirtualNetwork": {
-              "id": "[resourceId('Microsoft.Network/virtualNetworks',parameters('azvirtualNetwork1'))]"
+              "id": "[resourceId('Microsoft.Network/virtualNetworks',parameters('sharedServicesHUB'))]"
             }
           }
         }
@@ -1181,10 +1323,10 @@
     {
       "type": "Microsoft.Network/routeTables",
       "apiVersion": "2019-07-01",
-      "name": "[parameters('aZFWRouteTables')]",
-      "location": "[parameters('resourceEULocation')]",
+      "name": "[parameters('azRouteTables')]",
+      "location": "[parameters('resourceLocation')]",
       "dependsOn": [
-        "[concat('Microsoft.Network/virtualNetworks/', parameters('azvirtualNetwork1'))]"
+        "[concat('Microsoft.Network/virtualNetworks/', parameters('sharedServicesHUB'))]"
       ],
       "properties": {
         "disableBgpRoutePropagation": true,
@@ -1217,10 +1359,113 @@
       }
     },
     {
+      "apiVersion": "2019-04-01",
+      "name": "[parameters('applicationGatewayName')]",
+      "type": "Microsoft.Network/applicationGateways",
+      "location": "[parameters('resourceLocation')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters ('testSPOKE'))]"
+      ],
+      "properties": {
+        "sku": {
+          "name": "[parameters('applicationGatewaySize')]",
+          "tier": "[parameters('applicationGatewayTier')]",
+          "capacity": "[parameters('applicationGatewayInstanceCount')]"
+        },
+        "gatewayIPConfigurations": [
+          {
+            "name": "appGatewayIpConfig",
+            "properties": {
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('testSPOKE'), variables('APPGWSPSubnetName'))]"
+              }
+            }
+          }
+        ],
+        "frontendIPConfigurations": [
+          {
+            "name": "appGatewayFrontendIP",
+            "properties": {
+              "privateIPAddress": "[parameters('frontendIPAddresses')]",
+              "privateIPAllocationMethod": "Static",
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('testSPOKE'), variables('APPGWSPSubnetName'))]"
+              }
+            }
+          }
+        ],
+        "frontendPorts": [
+          {
+            "name": "appGatewayFrontendPort",
+            "properties": {
+              "Port": "[parameters('frontendPort')]"
+            }
+          }
+        ],
+        "backendAddressPools": [
+          {
+            "name": "appGatewayBackendPool",
+            "properties": {
+              "BackendAddresses": "[parameters('backendIPAddresses')]"
+            }
+          }
+        ],
+        "backendHttpSettingsCollection": [
+          {
+            "name": "appGatewayBackendHttpSettings",
+            "properties": {
+              "Port": "[parameters('backendPort')]",
+              "Protocol": "Http",
+              "CookieBasedAffinity": "[parameters('cookieBasedAffinity')]"
+            }
+          }
+        ],
+        "httpListeners": [
+          {
+            "name": "appGatewayHttpListener",
+            "properties": {
+              "FrontendIpConfiguration": {
+                "Id": "[concat(resourceId('Microsoft.Network/applicationGateways', parameters('applicationGatewayName')), '/frontendIPConfigurations/appGatewayFrontendIP')]"
+              },
+              "FrontendPort": {
+                "Id": "[concat(resourceId('Microsoft.Network/applicationGateways', parameters('applicationGatewayName')), '/frontendPorts/appGatewayFrontendPort')]"
+              },
+              "Protocol": "Http",
+              "SslCertificate": null
+            }
+          }
+        ],
+        "requestRoutingRules": [
+          {
+            "Name": "RRR-TP-EU",
+            "properties": {
+              "RuleType": "Basic",
+              "httpListener": {
+                "id": "[concat(resourceId('Microsoft.Network/applicationGateways', parameters('applicationGatewayName')), '/httpListeners/appGatewayHttpListener')]"
+              },
+              "backendAddressPool": {
+                "id": "[concat(resourceId('Microsoft.Network/applicationGateways', parameters('applicationGatewayName')), '/backendAddressPools/appGatewayBackendPool')]"
+              },
+              "backendHttpSettings": {
+                "id": "[concat(resourceId('Microsoft.Network/applicationGateways', parameters('applicationGatewayName')), '/backendHttpSettingsCollection/appGatewayBackendHttpSettings')]"
+              }
+            }
+          }
+        ],
+        "webApplicationFirewallConfiguration": {
+          "enabled": "[parameters('wafEnabled')]",
+          "firewallMode": "[parameters('wafMode')]",
+          "ruleSetType": "[parameters('wafRuleSetType')]",
+          "ruleSetVersion": "[parameters('wafRuleSetVersion')]",
+          "disabledRuleGroups": []
+        }
+      }
+    },
+    {
       "type": "Microsoft.Storage/storageAccounts",
       "apiVersion": "2018-07-01",
-      "name": "[variables('saName')]",
-      "location": "[parameters('resourceEULocation')]",
+      "name": "[parameters('saName')]",
+      "location": "[parameters('resourceLocation')]",
       "sku": {
         "name": "[parameters('saType')]",
         "tier": "Standard"
@@ -1237,10 +1482,5 @@
       }
     }
   ],
-  "outputs": {
-    "storageAccountName": {
-      "type": "string",
-      "value": "[variables('saName')]"
-    }
-  }
+  "outputs": {}
 }

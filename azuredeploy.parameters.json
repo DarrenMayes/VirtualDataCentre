@@ -2,10 +2,34 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "saName": {
+      "value": "satpeuazfw"
+    },
     "saType": {
       "value": "Standard_LRS"
     },
-    "aZFWRouteTables": {
+    "sharedServicesHUB": {
+      "value": "VNET-TP-EU-SS"
+    },
+    "testSPOKE": {
+      "value": "VNET-TP-EU-TST"
+    },
+    "azfirewallName": {
+      "value": "AZFW-TP-EU-SS"
+    },
+    "azfwSubnetAddressPrefix": {
+      "value": "172.16.254.0/26"
+    },
+    "noPublicIPAddresses": {
+      "value": 1
+    },
+    "publicIPNamePrefix": {
+      "value": "PIP-TP-EU-AZFW"
+    },
+    "availabilityZones": {
+      "value": [ "1", "2", "3" ]
+    },
+    "azRouteTables": {
       "value": "RT-TP-EU-AZFW"
     },
     "azUDRINT": {
@@ -17,44 +41,69 @@
     "azUDRSPOKE": {
       "value": "UDR-TP-EU-SPOKE"
     },
-    "azvirtualNetwork1": {
-      "value": "VNET-TP-EU-SS"
-    },
-    "azvirtualNetwork2": {
-      "value": "VNET-TP-EU-PRD"
-    },
-    "resourceEULocation": {
-      "value": "West Europe"
-    },
-    "azfirewallName": {
-      "value": "AZFW-TP-EU-SS"
-    },
-    "azureFirewallSubnetAddressPrefix": {
-      "value": "172.16.254.0/26"
-    },
-    "numberOfPublicIPAddresses": {
-      "value": 1
-    },
-    "publicIPNamePrefix": {
-      "value": "PIP-TP-EU-AZFW"
-    },
-    "availabilityZones": {
-      "value": [ "1", "2", "3" ]
-    },
     "nsgMGMTSS": {
       "value": "NSG-MGMT-EU-SS"
     },
     "nsgSPWEB": {
-      "value": "NSG-WEB-EU-PRD"
+      "value": "NSG-WEB-EU-TST"
     },
     "nsgSPAPP": {
-      "value": "NSG-APP-EU-PRD"
+      "value": "NSG-APP-EU-TST"
     },
     "nsgSPDB": {
-      "value": "NSG-DB-EU-PRD"
+      "value": "NSG-DB-EU-TST"
     },
     "nsgSPID": {
-      "value": "NSG-ID-EU-PRD"
+      "value": "NSG-ID-EU-TST"
+    },
+    "applicationGatewayName": {
+      "value": "agw-tp-eu-ts"
+    },
+    "applicationGatewaySize": {
+      "value": "WAF_Medium"
+    },
+    "applicationGatewayTier": {
+      "value": "WAF"
+    },
+    "applicationGatewayInstanceCount": {
+      "value": 1
+    },
+    "frontendIPAddresses": {
+      "value": "10.102.1.4"
+    },
+    "frontendPort": {
+      "value": 80
+    },
+    "backendPort": {
+      "value": 80
+    },
+    "wafEnabled": {
+      "value": "true"
+    },
+    "wafMode": {
+      "value": "Detection"
+    },
+    "wafRuleSetType": {
+      "value": "OWASP"
+    },
+    "wafRuleSetVersion": {
+      "value": "3.0"
+    },
+    "backendIPAddresses": {
+      "value": [
+        {
+          "IpAddress": "10.102.2.4"
+        },
+        {
+          "IpAddress": "10.102.2.5"
+        },
+        {
+          "IpAddress": "10.102.2.6"
+        }
+      ]
+    },
+    "cookieBasedAffinity": {
+      "value": "Disabled"
     }
   }
 }
