@@ -14,26 +14,40 @@ The template is customisable and can be used to build and generate similar netwo
 
 ***Paramaters***
 
-|Name                                   |Value              |Description                                                      |
-|:---                                   |:---               |:---                                                             |
-|'saType'                               |Standard_LRS       |Used to define the Storage Account Type                          |
-|'aZFWRouteTables'                      |RT-TP-EU-AZFW      |Route Table for Internet  via Azure Firewall                     |
-|'azUDRINT'                             |UDR-TP-EU-INT      |Internet 0.0.0.0/0 Route via Azure Firewall                      |
-|'azUDRSS'                              |UDR-TP-EU-SS       |HUB 172.16.0.0/16 Route via Azure Firewall                       |                                     
-|'azUDRSPOKE'                           |UDR-TP-EU-SPOKE    |SPOKE 10.102.0.0/16 Route via Azure Firewall                     |                                        
-|'azvirtualNetwork1'                    |VNET-TP-EU-SS      |SHARED SERVICES *HUB* VIRTUAL NETWORK                            |
-|'azvirtualNetwork2'                    |VNET-TP-EU-PRD     |PRODUCTION *SPOKE* VIRTUAL NETWORK                               |
-|'resourceEULocation'                   |West Europe        |Location where Resources will be deployed                        |
-|'azfirewallName'                       |AZFW-TP-EU-SS      |Name of the Azure Firewall deployed within SHARED SERVICES *HUB* |
-|'azureFirewallSubnetAddressPrefix'     |172.16.254.0/26    |Private Subnet Used by the Azure Firewall                        |
-|'numberOfPublicIPAddresses'            |1                  |Count of Public IP Addressess used by Azure Firewall             |
-|'publicIPNamePrefix'                   |PIP-TP-EU-AZFW     |Name of the Public IP Addressess used by Azure Firewall          |  
-|'availabilityZones'                    |"1", "2", "3"      |Used to mitigate risk of Azure Datacenter Failure                |                                       
-|'nsgMGMTSS'                            |NSG-MGMT-EU-SS     |Name of Shared Services Management Subnet NSG                    |                                      
-|'nsgSPWEB'                             |NSG-WEB-EU-PRD     |Name of Production Web Subnet NSG                                | 
-|'nsgSPAPP'                             |NSG-APP-EU-PRD     |Name of Production App Subnet NSG                                |                               
-|'nsgSPDB'                              |NSG-DB-EU-PRD      |Name of Production DB Subnet NSG                                 |                                
-|'nsgSPID'                              |NSG-ID-EU-PRD      |Name of Production DB Subnet NSG                                 |                               
+|Name                                   |Value                    |Description                                                      |
+|:---                                   |:---                     |:---                                                             |
+|'saName'                               |Standard_LRS             |Name of the Storage Account used for Diagnostic Archive          |
+|'saType'                               |Standard_LRS             |Used to define the Storage Account Type                          |
+|'sharedServicesHUB'                    |VNET-TP-EU-SS            |SHARED SERVICES *HUB* VIRTUAL NETWORK                            |
+|'testSPOKE        '                    |VNET-TP-EU-TST           |PRODUCTION *SPOKE* VIRTUAL NETWORK                               |
+|'azfirewallName'                       |AZFW-TP-EU-SS            |Name of the Azure Firewall deployed within SHARED SERVICES *HUB* |
+|'azfwSubnetAddressPrefix'              |172.16.254.0/26          |Private Subnet Used by the Azure Firewall                        |
+|'noPublicIPAddresses'                  |1                        |Count of Public IP Addressess used by Azure Firewall             |
+|'publicIPNamePrefix'                   |PIP-TP-EU-AZFW           |Name of the Public IP Addressess used by Azure Firewall          |  
+|'availabilityZones'                    |"1", "2", "3"            |Used to mitigate risk of Azure Datacenter Failure                |
+|'aZFWRouteTables'                      |RT-TP-EU-AZFW            |Route Table for Internet  via Azure Firewall                     |
+|'azUDRINT'                             |UDR-TP-EU-INT            |Internet 0.0.0.0/0 Route via Azure Firewall                      |
+|'azUDRSS'                              |UDR-TP-EU-SS             |HUB 172.16.0.0/16 Route via Azure Firewall                       |                                     
+|'azUDRSPOKE'                           |UDR-TP-EU-SPOKE          |SPOKE 10.102.0.0/16 Route via Azure Firewall                     |                                                                               
+|'nsgMGMTSS'                            |NSG-MGMT-EU-SS           |Name of Shared Services Management Subnet NSG                    |                                      
+|'nsgSPWEB'                             |NSG-WEB-EU-TST           |Name of TEST Web Subnet NSG                                      | 
+|'nsgSPAPP'                             |NSG-APP-EU-TST           |Name of TEST App Subnet NSG                                      |                               
+|'nsgSPDB'                              |NSG-DB-EU-TST            |Name of TEST DB Subnet NSG                                       |                                
+|'nsgSPID'                              |NSG-ID-EU-TST            |Name of TEST ID Subnet NSG                                       |                               
+|'applicationGatewayName'               |AGW-TP-EU-TS             |Name of TEST Application Gateway with WAF                        |
+|'applicationGatewaySize'               |WAF_Medium               |Size of TEST Application Gateway with WAF                        |
+|'applicationGatewayTier'               |WAF                      |Tier of the Application Gateway                                  |
+|'applicationGatewayInstanceCount'      |1                        |Instance volume of the Application Gateway                       |
+|'frontendIPAddresses'                  |10.102.1.4               |Private IP of the Application Gateway                            |
+|'frontendPort'                         |80                       |Frontend Port                                                    |
+|'backendPort'                          |80                       |Backend Port                                                     |
+|'wafEnabled'                           |True                     |The desired state of WAF functionality                           |
+|'wafMode'                              |Detection                |Default operational mode of the WAF                              |                              
+|'wafRuleSetType'                       |OWASP                    |Default state of the WAF                                         | 
+|'wafRuleSetVersion'                    |3.0                      |WAF Ruleset Engine and Signatures                                | 
+|'backendIPAddresses'                   |10.102.2.4, 10.102.2.5   |Backend IP Address Pool                                          |       
+|'cookieBasedAffinity'                  |Disabled                 |Default state of the WAF                                         |
+
 
 
 **Change Management**
@@ -41,9 +55,9 @@ The template is customisable and can be used to build and generate similar netwo
 - [x] Introduce VNET Peering between Shared Services HUB and Production Spoke Virtual Networks
 - [x] Create UDR and associate with Production Spoke Subnets to allow inspection in Shared Services HUB
 - [x] Create and associate Network Security Group to filter traffic at subnet level of Spoke Virtual Network
-- [ ] Include Service Endpoints for Microsoft.Storage to integrate sensitive accounts with VNET
+- [ ] Include Service Endpoints for Microsoft.Storage to integrate sensitive PaaS with VNET
 - [ ] Create Storage Account and integrate Diagnostic Logs for Azure Firewall for forensics and analysis
 - [ ] Modify the template to include Virtual Network Gateway in readiness for S2S VPN
-- [ ] Incorporate an Application Gateway with Web Application Firewall Functionality closest to Web Subnet
+- [x] Incorporate an Application Gateway with Web Application Firewall Functionality closest to Web Subnet
 - [ ] Create Test VM to validate approved traffic flows from Shared Services HUB to Production Spoke
 
