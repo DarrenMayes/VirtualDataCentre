@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "saName": {
-      "value": "satpeuazfwl"
+      "value": "satpeuazfww"
     },
     "saType": {
       "value": "Standard_LRS"
@@ -19,9 +19,6 @@
     },
     "azfirewallName": {
       "value": "AZFW-TP-EU-SS"
-    },
-    "azfwDiagName": {
-      "value": "DS-TP-EU-AZFW"
     },
     "azfwSubnetAddressPrefix": {
       "value": "172.16.254.0/26"
@@ -83,6 +80,9 @@
     "frontendPort": {
       "value": 80
     },
+    "healthProbe": {
+      "value": "PRB-TP-EU-W1"
+    },
     "backendPort": {
       "value": 80
     },
@@ -110,9 +110,6 @@
     },
     "cookieBasedAffinity": {
       "value": "Disabled"
-    },
-    "appgwDiagName": {
-      "value": "DS-TP-EU-APPGW"
     },
     "logAnalyticsWorkspaceName": {
       "value": "LA-TP-EU-WS1"

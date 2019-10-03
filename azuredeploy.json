@@ -4,7 +4,7 @@
   "parameters": {
     "saName": {
       "type": "string",
-      "defaultValue": "satpeuazfwl",
+      "defaultValue": "satpeuazfww",
       "metadata": {
         "description": "Name of the STORAGE ACCOUNT used for Diagnostics."
       }
@@ -54,13 +54,6 @@
         "description": "Name of the SHARED SERVICES Azure Firewall."
       }
 
-    },
-    "azfwDiagName": {
-      "type": "string",
-      "defaultValue": "DS-TP-EU-AZFW",
-      "metadata": {
-        "description": "Name of the Diagnostics Connection for AZFW"
-      }
     },
     "azfwSubnetAddressPrefix": {
       "type": "string",
@@ -220,6 +213,13 @@
         "description": "application gateway front end port"
       }
     },
+    "healthProbe": {
+      "type": "string",
+      "defaultValue": "PRB-TP-EU-W1",
+      "metadata": {
+        "description": "application gateway backend Health Probe"
+      }
+    },
     "backendPort": {
       "type": "int",
       "defaultValue": 80,
@@ -297,13 +297,6 @@
       "defaultValue": 30,
       "metadata": {
         "description": "Number of days to store diagnostic logs in storage account"
-      }
-    },
-    "appgwDiagName": {
-      "type": "string",
-      "defaultValue": "DS-TP-EU-APPGW",
-      "metadata": {
-        "description": "Name of the Diagnostics Connection for APPGW"
       }
     },
     "logAnalyticsWorkspaceName": {
@@ -1399,7 +1392,7 @@
         {
           "apiVersion": "2015-07-01",
           "type": "providers/diagnosticSettings",
-          "name": "[concat('Microsoft.Insights/', parameters('appgwDiagName'))]",
+          "name": "Microsoft.Insights/service",
           "location": "[parameters('resourceLocation')]",
           "dependsOn": [
             "[resourceId('Microsoft.Network/azureFirewalls', parameters('azfirewallName'))]"
@@ -1634,6 +1627,19 @@
             }
           }
         ],
+        "probes": [
+          {
+            "name": "[parameters('healthProbe')]",
+            "properties": {
+              "protocol": "Http",
+              "path": "/",
+              "host": "127.0.0.1",
+              "interval": 20,
+              "timeout": 2,
+              "unhealthyThreshold": 2
+            }
+          }
+        ],
         "backendAddressPools": [
           {
             "name": "appGatewayBackendPool",
@@ -1702,7 +1708,7 @@
         {
           "apiVersion": "2015-07-01",
           "type": "providers/diagnosticSettings",
-          "name": "[concat('Microsoft.Insights/', parameters('appgwDiagName'))]",
+          "name": "Microsoft.Insights/service",
           "location": "[parameters('resourceLocation')]",
           "dependsOn": [
             "[resourceId('Microsoft.Network/applicationGateways', parameters('applicationGatewayName'))]"
