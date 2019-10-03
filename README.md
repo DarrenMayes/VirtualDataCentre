@@ -48,7 +48,7 @@ The template is customisable and can be used to build and generate similar netwo
 |'backendIPAddresses'               |10.102.2.4, 10.102.2.5   |Backend IP Address Pool                                          |       
 |'cookieBasedAffinity'              |Disabled                 |Default state of the WAF                                         |
 
-
+https://docs.microsoft.com/en-us/azure/application-gateway/log-analytics
 
 **Change Management**
 - [x] Update template to include Azure Firewall for Spoke Virtual Network and introduce base rules
