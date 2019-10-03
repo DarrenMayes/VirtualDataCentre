@@ -60,7 +60,7 @@
       "value": "NSG-ID-EU-TST"
     },
     "applicationGatewayName": {
-      "value": "agw-tp-eu-ts"
+      "value": "AGW-TP-EU-TS"
     },
     "applicationGatewaySize": {
       "value": "WAF_Medium"

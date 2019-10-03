@@ -144,7 +144,7 @@
     },
     "applicationGatewayName": {
       "type": "string",
-      "defaultValue": "agw-tp-eu-ts",
+      "defaultValue": "AGW-TP-EU-TS",
       "metadata": {
         "description": "Name of Spoke Application Gateway"
       }
@@ -1452,12 +1452,18 @@
             }
           }
         ],
+        "probes": [],
+        "rewriteRuleSets": [],
+        "redirectConfigurations": [],
         "webApplicationFirewallConfiguration": {
           "enabled": "[parameters('wafEnabled')]",
           "firewallMode": "[parameters('wafMode')]",
           "ruleSetType": "[parameters('wafRuleSetType')]",
           "ruleSetVersion": "[parameters('wafRuleSetVersion')]",
-          "disabledRuleGroups": []
+          "disabledRuleGroups": [],
+          "requestBodyCheck": true,
+          "maxRequestBodySizeInKb": 128,
+          "fileUploadLimitInMb": 100
         }
       }
     },
