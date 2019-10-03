@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "saName": {
-      "value": "satpeuazfwe"
+      "value": "satpeuazfwm"
     },
     "saType": {
       "value": "Standard_LRS"
@@ -19,6 +19,9 @@
     },
     "azfirewallName": {
       "value": "AZFW-TP-EU-SS"
+    },
+    "azfwDiagName": {
+      "value": "DS-TP-EU-AZFW"
     },
     "azfwSubnetAddressPrefix": {
       "value": "172.16.254.0/26"
@@ -46,6 +49,9 @@
     },
     "nsgMGMTSS": {
       "value": "NSG-MGMT-EU-SS"
+    },
+    "nsgShareSS": {
+      "value": "NSG-SHARE-EU-SS"
     },
     "nsgSPWEB": {
       "value": "NSG-WEB-EU-TST"
@@ -104,6 +110,15 @@
     },
     "cookieBasedAffinity": {
       "value": "Disabled"
+    },
+    "appgwDiagName": {
+      "value": "DS-TP-EU-APPGW"
+    },
+    "logAnalyticsWorkspaceName": {
+      "value": "LA-TP-EU-WS1"
+    },
+    "logAnalyticsWorkspaceResourceGroupName": {
+      "value": "RG-TP-EU-LOG"
     }
   }
 }
