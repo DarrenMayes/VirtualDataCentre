@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "saName": {
-      "value": "satpeuazfww"
+      "value": "satpeuazfdi"
     },
     "saType": {
       "value": "Standard_LRS"
@@ -90,7 +90,7 @@
       "value": true
     },
     "wafMode": {
-      "value": "Detection"
+      "value": "Prevention"
     },
     "wafRuleSetType": {
       "value": "OWASP"
@@ -112,7 +112,7 @@
       "value": "Disabled"
     },
     "logAnalyticsWorkspaceName": {
-      "value": "LA-TP-EU-WS1"
+      "value": "LA-TP-EU-WS"
     },
     "logAnalyticsWorkspaceResourceGroupName": {
       "value": "RG-TP-EU-LOG"

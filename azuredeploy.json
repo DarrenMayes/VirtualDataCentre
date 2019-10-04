@@ -4,7 +4,7 @@
   "parameters": {
     "saName": {
       "type": "string",
-      "defaultValue": "satpeuazfww",
+      "defaultValue": "satpeuazfdi",
       "metadata": {
         "description": "Name of the STORAGE ACCOUNT used for Diagnostics."
       }
@@ -240,7 +240,7 @@
         "Detection",
         "Prevention"
       ],
-      "defaultValue": "Detection",
+      "defaultValue": "Prevention",
       "metadata": {
         "description": "Operational Mode of the Application Gateway Web Application Firewall"
       }
@@ -301,7 +301,7 @@
     },
     "logAnalyticsWorkspaceName": {
       "type": "string",
-      "defaultValue": "LA-TP-EU-WS1",
+      "defaultValue": "LA-TP-EU-WS",
       "metadata": {
         "description": "Name of existing Log Analytics workspace to send diagnostic data to"
       }
