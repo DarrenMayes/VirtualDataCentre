@@ -42,7 +42,7 @@ The template is customisable and can be used to build and generate similar netwo
 |'frontendPort'                     |80                       |Frontend Port                                                    |
 |'backendPort'                      |80                       |Backend Port                                                     |
 |'wafEnabled'                       |True                     |The desired state of WAF functionality                           |
-|'wafMode'                          |Detection                |Default operational mode of the WAF                              |                              
+|'wafMode'                          |Prevention               |Default operational mode of the WAF                              |                              
 |'wafRuleSetType'                   |OWASP                    |Default state of the WAF                                         | 
 |'wafRuleSetVersion'                |3.0                      |WAF Ruleset Engine and Signatures                                | 
 |'backendIPAddresses'               |10.102.2.4, 10.102.2.5   |Backend IP Address Pool                                          |       
@@ -56,8 +56,9 @@ https://docs.microsoft.com/en-us/azure/application-gateway/log-analytics
 - [x] Create UDR and associate with Production Spoke Subnets to allow inspection in Shared Services HUB
 - [x] Create and associate Network Security Group to filter traffic at subnet level of Spoke Virtual Network
 - [ ] Include Service Endpoints for Microsoft.Storage to integrate sensitive PaaS with VNET
-- [ ] Create Storage Account and integrate Diagnostic Logs for Azure Firewall for forensics and analysis
+- [x] Enable Diagnostic Logging for Azure Firewall and Application Gateway and integrate with Existing Workspace
 - [ ] Modify the template to include Virtual Network Gateway in readiness for S2S VPN
 - [x] Incorporate an Application Gateway with Web Application Firewall Functionality closest to Web Subnet
+- [ ] Clean-Up Security Configuration i.e. NSG, Application Gateway, UDR etc...
 - [ ] Create Test VM to validate approved traffic flows from Shared Services HUB to Production Spoke
 
