@@ -60,4 +60,5 @@ The template is customisable and can be used to build and generate similar netwo
 - [x] Incorporate an Application Gateway with Web Application Firewall Functionality closest to Web Subnet
 - [ ] Clean-Up Security Configuration i.e. NSG, Application Gateway, UDR etc...
 - [ ] Create Test VM to validate approved traffic flows from Shared Services HUB to Production Spoke
+- [ ] Deploy in TEST and Production
 
