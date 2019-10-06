@@ -1,9 +1,5 @@
 #Virtual Network Network Architecture#
 
-<a href="https://azuredeploy.net/?repository=https://github.com/DarrenMayes/VirtualDataCentre/master/azuredeploy.json" alt="Deploy to Azure" target="_blank">
-   <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-
 Welcome to the Hybrid Network Architecture Azure Resource Manager template repository. This GitHub repo has been created to help promote the Security Architecture principles of "Secure By Design", "Compartmentalisation" and "Defense in Depth", whilst embracing the concept of "Infrastructure-as-Code" for automation, elasticity and repeatable deployment. It aims to achieve this by adopting a tailored Zero Trust Network Architecture pattern into an Azure Resource Manager Template which, at the click of a button can be deployed within a target subscription for Evaluation, Testing and eventually the Hosting of IaaS and PaaS Services. 
 
 The template has been designed to benefit from the Microsoft recommend practice of deploying a Shared Services Virtual Network [HUB] which is peered to a Production or Test Virtual Network [SPOKE]. The Shared Services VNET contains all common Network Security components, needed for traffic analysis, inspection, management and response, such as a Centralised Layer 7 Firewall, Application Gateway, Web Application Firewall and Log Management. The design uses a multi-tiered network zone architecture to *Compartmentalise* services across functional boundaries, each of which are protected by a Network Security Group firewall at the Subnet Level to ensure *Defense in Depth*. 
