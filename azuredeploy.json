@@ -301,7 +301,7 @@
     },
     "logAnalyticsWorkspaceName": {
       "type": "string",
-      "defaultValue": "LA-TP-EU-WS",
+      "defaultValue": "LA-TP-EU-WSA",
       "metadata": {
         "description": "Name of existing Log Analytics workspace to send diagnostic data to"
       }

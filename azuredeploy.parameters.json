@@ -112,7 +112,7 @@
       "value": "Disabled"
     },
     "logAnalyticsWorkspaceName": {
-      "value": "LA-TP-EU-WS"
+      "value": "LA-TP-EU-WSA"
     },
     "logAnalyticsWorkspaceResourceGroupName": {
       "value": "RG-TP-EU-LOG"
