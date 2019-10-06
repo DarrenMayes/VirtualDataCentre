@@ -1,7 +1,7 @@
 # Hybrid Network Architecture
 
-[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/) <a href="http://armviz.io/#/?load=https://raw.githubusercontent.com/DarrenMayes/VirtualDataCentre/master/azuredeploy.json" target="_blank">
-  <img src="http://armviz.io/visualizebutton.png"/>
+<a href="https://azuredeploy.net/?repository=https://raw.githubusercontent.com/DarrenMayes/VirtualDataCentre/master/azuredeploy.json" target="_blank">
+    <img src="https://azuredeploy.net/deploybutton.png"/>
 </a>
 
 
