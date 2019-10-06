@@ -1,9 +1,6 @@
 # Hybrid Network Architecture
 
-[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/)
-<a href="https://azuredeploy.net/" target="_blank">
-    <img src="https://azuredeploy.net/deploybutton.png"/>
-</a>
+[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/?repository=https://raw.githubusercontent.com/DarrenMayes/VirtualDataCentre/master/azuredeploy.json)
 
 Welcome to the Hybrid Network Architecture Azure Resource Manager template repository. This GitHub repo has been created to help promote the Security Architecture principles of "Secure By Design", "Compartmentalisation" and "Defense in Depth", whilst embracing the concept of "Infrastructure-as-Code" for automation, elasticity and repeatable deployment. It aims to achieve this by adopting a tailored Zero Trust Network Architecture pattern into an Azure Resource Manager Template which, at the click of a button can be deployed within a target subscription for Evaluation, Testing and eventually the Hosting of IaaS and PaaS Services. 
 
