@@ -1,4 +1,4 @@
-# Hybrid Network Architecture
+# Virtual Data Centre
 
 [![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://azuredeploy.net/?repository=https://https://raw.githubusercontent.com/DarrenMayes/VirtualDataCentre/master/azuredeploy.json)
 
